@@ -1,0 +1,77 @@
+.boleta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  
+    .logo-container {
+      margin: 40px 0 30px;
+  
+      .logo {
+        max-width: 120px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  
+    ion-header {
+      margin-bottom: 15px;
+    }
+  
+    ion-list {
+      width: 100%;
+      margin-bottom: 20px;
+  
+      ion-item {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        
+        h2 {
+          font-size: 1.2em;
+          margin: 0;
+          font-weight: bold;
+        }
+  
+        p {
+          margin: 0;
+          font-size: 1em;
+          color: #555;
+        }
+      }
+    }
+  
+    .summary-section {
+      background-color: #f9f9f9; // Color de fondo para el apartado
+      padding: 20px; // Relleno general para el apartado
+      border-radius: 8px; // Bordes redondeados
+      width: 100%;
+      max-width: 600px; // Establecer un ancho máximo para el apartado
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Sombra para el apartado
+      margin-top: 20px; // Espacio superior para separar del contenido
+  
+      ion-item {
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: 10px 15px; // Añadir relleno lateral a cada item
+  
+        ion-label {
+          color: #333;
+        }
+      }
+  
+      ion-button {
+        margin-top: 20px;
+        background-color: #c19a6b; /* Color de fondo correcto */
+        color: black; /* Color del texto */
+        border-radius: 20px; /* Bordes redondeados */
+        padding: 10px 0; /* Espacio interior */
+        width: 100%; /* Ocupa todo el ancho */
+        text-align: center; /* Centrar el texto */
+        box-shadow: none; /* Sin sombra */
+        border: none; /* Sin borde */
+      }
+    }
+  }
+  

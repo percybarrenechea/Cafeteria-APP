@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/main/home">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Catalogo de Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="cafes">Cafés</ion-segment-button>
+    <ion-segment-button value="pasteles">Pasteles</ion-segment-button>
+    <ion-segment-button value="postres">Postres</ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="selectedSegment === 'cafes'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let cafe of cafes">
+          <ion-card>
+            <ion-img [src]="cafe.imagen"></ion-img>
+            <ion-card-content>
+              <ion-card-title>{{ cafe.nombre }}</ion-card-title>
+              <p>{{ cafe.precio | currency:'PEN' }}</p>
+              <ion-button expand="block" (click)="agregarAlCarrito(cafe)" [disabled]="isProductoSeleccionado(cafe)">Ordena Ahora</ion-button>
+              <!-- Nuevo botón para favoritos -->
+              <ion-button fill="clear" (click)="agregarAFavoritos(cafe)" [disabled]="isProductoFavorito(cafe)">
+                <ion-icon name="heart" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="selectedSegment === 'pasteles'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let pastel of pasteles">
+          <ion-card>
+            <ion-img [src]="pastel.imagen"></ion-img>
+            <ion-card-content>
+              <ion-card-title>{{ pastel.nombre }}</ion-card-title>
+              <p>{{ pastel.precio | currency:'PEN' }}</p>
+              <ion-button expand="block" (click)="agregarAlCarrito(pastel)" [disabled]="isProductoSeleccionado(pastel)">Ordena Ahora</ion-button>
+              <!-- Nuevo botón para favoritos -->
+              <ion-button fill="clear" (click)="agregarAFavoritos(pastel)" [disabled]="isProductoFavorito(pastel)">
+                <ion-icon name="heart" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="selectedSegment === 'postres'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let postre of postres">
+          <ion-card>
+            <ion-img [src]="postre.imagen"></ion-img>
+            <ion-card-content>
+              <ion-card-title>{{ postre.nombre }}</ion-card-title>
+              <p>{{ postre.precio | currency:'PEN' }}</p>
+              <ion-button expand="block" (click)="agregarAlCarrito(postre)" [disabled]="isProductoSeleccionado(postre)">Ordena Ahora</ion-button>
+              <!-- Nuevo botón para favoritos -->
+              <ion-button fill="clear" (click)="agregarAFavoritos(postre)" [disabled]="isProductoFavorito(postre)">
+                <ion-icon name="heart" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Botón flotante que se muestra solo cuando hay productos en el carrito -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="carrito.length > 0">
+    <ion-fab-button (click)="irAlCarrito()">
+      <ion-icon name="cart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

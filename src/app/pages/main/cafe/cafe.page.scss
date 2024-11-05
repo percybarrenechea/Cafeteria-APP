@@ -1,0 +1,102 @@
+/* Define colors similar to Starbucks */
+$starbucks-white: #FFFFFF;
+$starbucks-black: #000000;
+$starbucks-brown: #5E3A2D;
+
+/* General styles */
+ion-header {
+  background-color: $starbucks-black;
+  color: $starbucks-white;
+
+  ion-toolbar {
+    background-color: transparent;
+  }
+}
+
+ion-title {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 24px;
+}
+
+ion-content {
+  background-color: $starbucks-brown;
+  padding: 16px;
+}
+
+ion-card {
+  border-radius: 8px;
+  border: 1px solid $starbucks-black;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  background-color: $starbucks-white;
+
+  ion-card-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    color: $starbucks-black;
+  }
+
+  p {
+    font-size: 16px;
+    color: $starbucks-black;
+  }
+}
+
+ion-button {
+  color: $starbucks-white;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: darken($starbucks-black, 10%);
+  }
+
+  &.danger {
+    background-color: #FF3B30;
+  }
+
+  ion-icon[name="heart"] {
+    color: #FF3B30; // Color rojo para el corazón
+  }
+}
+
+ion-fab {
+  ion-fab-button {
+    color: $starbucks-white;
+  }
+}
+
+/* Customize ion-segment */
+ion-segment {
+  background-color: $starbucks-white;
+}
+
+ion-segment-button {
+  color: $starbucks-black;
+
+  &.ion-activated {
+    background-color: $starbucks-black;
+    color: $starbucks-white;
+  }
+}
+
+/* Thumbnail images */
+ion-thumbnail {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  ion-card {
+    margin-bottom: 12px;
+  }
+
+  ion-title {
+    font-size: 20px;
+  }
+}
+
+ion-content {
+  background-color: $starbucks-brown !important;
+  padding: 16px;
+}

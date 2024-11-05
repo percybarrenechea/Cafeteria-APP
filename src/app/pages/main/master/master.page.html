@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Master</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Master</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Segmento de selección -->
+  <ion-segment (ionChange)="segmentChanged($event)" value="ordenes">
+    <ion-segment-button value="ordenes">
+      <ion-label>Órdenes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pagos">
+      <ion-label>Ganancias</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Apartado 1: Todas las órdenes de los clientes -->
+  <ion-card *ngIf="selectedSegment === 'ordenes'">
+    <ion-card-header>
+      <ion-card-title>Todas las Órdenes de los Clientes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="ordenes.length === 0">
+        <ion-item>
+          <ion-label>No hay órdenes disponibles.</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngIf="ordenes.length > 0">
+        <ion-item *ngFor="let orden of ordenes">
+          <ion-label (click)="orden.expandido = !orden.expandido">
+            <h2>Compra {{ ordenes.indexOf(orden) + 1 }}</h2>
+            <p>Fecha: {{ orden.fecha.toDate() | date:'fullDate' }}</p>
+            <p>Hora: {{ orden.fecha.toDate() | date:'shortTime' }}</p>
+          </ion-label>
+          <div *ngIf="orden.expandido">
+            <p>Cliente: {{ orden.nombre }}</p>
+            <p>Método de Pago: {{ orden.metodoPago }}</p>
+            <p>Precio Total: {{ orden.total | currency }}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+    <!-- Botón de impresión en la parte inferior -->
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button expand="block" color="primary" (click)="imprimirPDF()">
+          <ion-icon slot="start" name="print-outline"></ion-icon>
+          Imprimir Todas las Órdenes
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>    
+  </ion-card>
+
+  <!-- Apartado 2: Historial de pagos y total de ganancias -->
+  <ion-card *ngIf="selectedSegment === 'pagos'">
+    <ion-card-header>
+      <ion-card-title>Historial de Órdenes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let orden of ordenes">
+          <ion-label>
+            <h2>{{ orden.nombre }}</h2>
+            <p>Monto total: {{ orden.total | currency }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <div class="total-ganancias">
+        <h2>Ganancias Totales: {{ totalGanancias | currency }}</h2>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

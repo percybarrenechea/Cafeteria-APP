@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title-header">Cafetería Isabelle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-logo">
+    <img src="assets/imgs/isabelle-logo.png" alt="Isabelle Café Logo">
+  </div>
+
+  <h2 class="login-title">Bienvenido a Isabelle</h2>
+  <p class="login-subtitle">Tu rincón favorito de café</p>
+
+  <form (ngSubmit)="onLogin()">
+    <ion-item class="login-input">
+      <ion-label position="floating" class="input-label">Correo electrónico</ion-label>
+      <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item class="login-input">
+      <ion-label position="floating" class="input-label">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="tertiary" type="submit">Iniciar sesión</ion-button>
+  </form>
+
+  <!-- Botón para registrar usuario -->
+  <ion-button expand="block" fill="outline" color="secondary" button routerLink="/sign-up">Registrar usuario</ion-button>
+
+  <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+</ion-content>

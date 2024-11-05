@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/main/home">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Historial de Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Historial de Compras</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Contenido del historial -->
+  <div #historialContent>
+    <!-- Mostrar mensaje si no hay historial -->
+    <ion-item *ngIf="!historial.length">
+      <ion-label>No tienes compras anteriores.</ion-label>
+    </ion-item>
+
+    <!-- Lista de historial -->
+    <ion-list *ngIf="historial.length > 0">
+      <ion-item *ngFor="let orden of historial">
+        <ion-label>
+          <h2>{{ orden.nombre }}</h2>
+          <p>{{ orden.precio | currency:'PEN' }}</p>
+          <p>{{ orden.fecha.toDate() | date: 'medium' }}</p>
+        </ion-label>
+
+        <!-- Ícono de impresión -->
+        <ion-button slot="end" fill="clear" (click)="imprimirHistorialPDF(orden)">
+          <ion-icon name="print-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

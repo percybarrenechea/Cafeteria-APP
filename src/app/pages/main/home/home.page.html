@@ -1,0 +1,118 @@
+<ion-content>
+
+  <div class="comienzo">
+    <h1>Cafeteria Isabelle</h1>
+  </div>
+
+  <!-- Banner con imagen destacada y movimiento lento -->
+  <div class="banner">
+    <ion-img src="assets/img/home/home.png"></ion-img>
+  </div>
+
+  <!-- Mensaje de bienvenida que aparece por 3 segundos -->
+  <div id="welcomeMessage" class="welcome" style="display: none;">  <!-- NO FUNCIONA PTMR -->
+    <h2>Bienvenido</h2>
+  </div>
+
+  <!-- Introducción de la cafetería -->
+  <div class="intro">
+    
+    <p>
+      Bienvenidos a la Cafetería Isabelle, donde encontrarás una selección de los mejores cafés, pasteles, y postres preparados con los ingredientes más frescos. Disfruta de una experiencia única en cada visita.
+    </p>
+
+    <!-- Iconos representativos debajo de la introducción -->
+    <div class="highlights">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-icon name="cafe-outline" size="large"></ion-icon>
+            <p>Los mejores cafés</p>
+          </ion-col>
+          <ion-col size="4">
+            <ion-icon name="ice-cream-outline" size="large"></ion-icon>
+            <p>Postres deliciosos</p>
+          </ion-col>
+          <ion-col size="4">
+            <ion-icon name="pizza-outline" size="large"></ion-icon>
+            <p>Pasteles artesanales</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </div>
+
+  <!-- Catálogo de productos -->
+  <div class="main-content">
+    <h2>Nuestro Menú</h2>
+    <ion-card button routerLink="/main/cafe">
+      <ion-img src="assets/img/home/cafe.JPG"></ion-img>
+      <ion-card-header>
+        <ion-card-title>Catálogo</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <!-- Otra tarjeta con una oferta destacada 
+    <ion-card button routerLink="/ofertas">
+      <ion-img src="assets/img/home/oferta_especial.jpg"></ion-img>
+      <ion-card-header>
+        <ion-card-title>Oferta Especial</ion-card-title>
+      </ion-card-header>
+    </ion-card> -->
+  </div>
+
+  <!-- Redes sociales con iconos -->
+  <div class="social-media">
+    <p>Síguenos en nuestras redes sociales:</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <a href="https://www.facebook.com/profile.php?id=61552994519170" target="_blank">
+            <ion-icon name="logo-facebook" class="social-icon facebook"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="6">
+          <a href="https://instagram.com/isabelle.cafeteria?igshid=MzRlODBiNWFlZA==" target="_blank">
+            <ion-icon name="logo-instagram" class="social-icon instagram"></ion-icon>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Horario y ubicación formal -->
+  <div class="location">
+    <h2>Visítanos</h2>
+    <p><strong>Dirección:</strong> Calle Falsa 123, Huancayo</p>
+    <p><strong>Horario:</strong> Lunes a Viernes 8:00 AM - 8:00 PM</p>
+    <ion-button href="https://goo.gl/maps/example" color="dark" expand="block">
+      <ion-icon name="navigate-outline"></ion-icon> Cómo llegar
+    </ion-button>
+  </div>
+
+  <!-- Botón flotante para historial, perfil y cerrar sesión -->
+<div class="floating-buttons">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="ellipsis-vertical"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button routerLink="/main/historial">
+        <ion-icon name="time-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink="/main/perfil">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink="/main/favoritos">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-fab-button>
+      <!-- Botón de cerrar sesión -->
+      <ion-fab-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</div>
+
+
+</ion-content>

@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/main/cafe">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Carrito</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list *ngIf="carrito.length > 0">
+    <ion-item *ngFor="let producto of carrito">
+      <ion-thumbnail slot="start">
+        <img [src]="producto.imagen" loading="lazy">
+      </ion-thumbnail>      
+      <ion-label>
+        <h2>{{ producto.nombre }}</h2>
+        <p>{{ producto.precio | currency:'PEN' }}</p>
+      </ion-label>
+    
+      <!-- Contador de cantidad -->
+      <ion-button size="small" (click)="disminuirCantidad(producto)" color="light" [disabled]="producto.cantidad === 1">-</ion-button>
+      <ion-input type="number" [(ngModel)]="producto.cantidad" min="1" readonly></ion-input>
+      <ion-button size="small" (click)="aumentarCantidad(producto)" color="light">+</ion-button>
+    
+      <ion-button slot="end" color="danger" (click)="eliminarDelCarrito(producto)">Eliminar</ion-button>
+    </ion-item>
+    
+  </ion-list>
+
+  <ion-item *ngIf="carrito.length === 0">
+    <ion-label>No hay productos en el carrito.</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="carrito.length > 0">
+    <ion-label>Precio Total:</ion-label>
+    <ion-label slot="end">{{ calcularTotal() | currency:'PEN' }}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="carrito.length > 0">
+    <ion-label>Selecciona el método de pago:</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-radio-group [(ngModel)]="metodoPago">
+      <ion-item>
+        <ion-label>Plin</ion-label>
+        <ion-radio value="plin"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Yape</ion-label>
+        <ion-radio value="yape"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tarjeta</ion-label>
+        <ion-radio value="tarjeta"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-item>
+
+  <ion-item *ngIf="metodoPago === 'tarjeta'">
+    <ion-label position="stacked">Número de tarjeta</ion-label>
+    <ion-input type="text" [(ngModel)]="numeroTarjeta"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="metodoPago === 'plin' || metodoPago === 'yape'">
+    <ion-label position="stacked">Número de teléfono</ion-label>
+    <ion-input type="text" [(ngModel)]="numeroTelefono"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="pagar()">Pagar</ion-button>
+
+  <ion-item *ngIf="carrito.length === 0">
+    <ion-label>No hay productos en el carrito.</ion-label>
+  </ion-item>
+</ion-content>
